@@ -1,5 +1,5 @@
 class Solution {
-    public int pivotIndex(int[] nums) {
+    public int pivotIndex(final int[] nums) {
         int sum_left=0, sum_right=0,j,k;
         
         if(nums.length==0)
@@ -38,11 +38,11 @@ class Solution {
         return -1;
     }
 
-    public static void main(String[] args){
+    public static void main(final String[] args){
 
-        Solution s = new Solution();
-        int[] nums = {-1,-1,0,1,1,0};
-        int a = s.pivotIndex(nums);
+        final Solution s = new Solution();
+        final int[] nums = {-1,-1,0,1,1,0};
+        final int a = s.pivotIndex(nums);
         System.out.println(a);
     }
 }
