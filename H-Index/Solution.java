@@ -52,7 +52,7 @@ class Solution {
         // }
 
         int value = 0;
-        int i, j;
+        int i;
         for (i = 0; i < citations.length; i++) {
             if (i >= citations[i]) {
                 value = citations[i];
