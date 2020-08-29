@@ -48,7 +48,7 @@ class Solution extends SolBase {
     }
 
     public static void main(String[] args) {
-        Solution s = new Solution(1);
+        Solution s = new Solution(100);
         int n = s.n;
         while (n > 0) {
             System.out.println(s.rand10());
