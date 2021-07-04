@@ -54,4 +54,7 @@ class Solution {
     // swapping -> O(N)
 
     // Space Complexity = O(1) -> No extra space
+
+    // Better Solution -> consider max1, max2 and max3 as Long.MIN_VALUE instead of
+    // INTEGER.MIN_VALUE
 }
