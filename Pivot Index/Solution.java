@@ -1,48 +1,30 @@
 class Solution {
-    public int pivotIndex(final int[] nums) {
-        int sum_left=0, sum_right=0,j,k;
-        
-        if(nums.length==0)
-            return -1;
-        
-        j=-2; k=0;
-        for(int i=0; i<nums.length; i++){
-            
-            j++; k++;
-             
-            if(i>0 && j<i){
-                sum_left += nums[j];
-            }
-            
-            while(i==0 && k<nums.length){
-                sum_right += nums[k];
-                k++;
-            }
+    public static int pivotIndex(final int[] nums) {
 
-            if(k==nums.length && i==0){
-                k=1;
-            }
+        int sum = 0, right_sum = 0, left_sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
 
-            if(k==nums.length && i>0){
-                sum_right=0;
-            }
-            
-            if(i>0 && k<nums.length){
-                sum_right -= nums[k-1];
-            }
-            
-            if(sum_left==sum_right){
+        for (int i = 0; i < nums.length; i++) {
+            right_sum = sum - nums[i] - left_sum;
+            if (left_sum == right_sum) {
                 return i;
             }
+            left_sum += nums[i];
         }
+
         return -1;
     }
 
-    public static void main(final String[] args){
-
-        final Solution s = new Solution();
-        final int[] nums = {-1,-1,0,1,1,0};
-        final int a = s.pivotIndex(nums);
-        System.out.println(a);
+    public static void main(final String[] args) {
+        System.out.println(Solution.pivotIndex(new int[] { 2, 1, -1 }));
     }
+
+    // Time Complexity -
+    // Best Case -> 0th element is Pivot element -> O(1)
+    // Avg Case -> Pivot is between 0 and n-1 -> O(N)
+    // Worst Case -> Pivot is at n-1 index or there is no pivot -> O(N)
+
+    // Space Complexity = O(1)
 }
