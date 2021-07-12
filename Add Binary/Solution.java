@@ -27,20 +27,27 @@ class Solution {
         }
 
         StringBuilder final_res = new StringBuilder(res).reverse();
-        if (res.substring(0, 1) == "0") {
+        String final_res1 = "";
+        if (final_res.substring(0, 1).equals("0")) {
             int i = 0;
-            for (i = 0; i < res.length() && res.substring(i, i + 1).equals("0"); i++) {
+            for (i = 0; i < final_res.length() && final_res.substring(i, i + 1).equals("0"); i++) {
             }
 
-            // final_res = res(i,)
+            if (i == final_res.length()) {
+                return "0";
+            }
+            final_res1 = final_res.substring(i).toString();
         }
 
-        return new StringBuilder(res).reverse().toString();
+        return final_res1;
     }
 
     public static void main(String args[]) {
         System.out.println(Solution.addition(
-                "10100000100100110110010000010101111011011001101110111111111101000000101111001110001111100001101",
-                "110101001011101110001111100110001010100001101011101010000011011011001011101111001100000011011110011"));
+                "110111101100010011000101110110100000011101000101011000000000000000000000000000000000000000000000000",
+                "1011"));
+        System.out.println(Double.parseDouble(
+                "110111101100010011000101110110100000011101000101011000000000000000000000000000000000000000000000000"));
+        System.out.println(Integer.parseInt("1011", 2));
     }
 }
