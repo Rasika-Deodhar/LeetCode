@@ -21,7 +21,7 @@ class Solution {
                         target - numbers[i]);
                 if (indices[1] >= 0) {
                     indices[0] = i + 1;
-                    indices[1] += i + 1;
+                    indices[1] += i + 2;
                     return indices;
                 }
             }
@@ -38,4 +38,9 @@ class Solution {
         }
 
     }
+
+    // Time Complexity -
+    // Best case -> Indices are of 1st and Last numbers
+    // Avg Case -> Index 0 is first number and 2nd is somewhere between
+    // Worst Case -> Index is 2nd last and last number
 }
