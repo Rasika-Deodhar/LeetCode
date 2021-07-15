@@ -22,22 +22,33 @@ public class Solution {
             return nums.length;
         }
 
-        Arrays.sort(nums);
-
-        int res = 0, sum1 = 0;
-        for (int i = 0; i < nums.length; i++) {
-            sum1 += nums[i];
-            if (sum - sum1 >= target) {
-                res = nums.length - (i + 1);
-            } else {
-                return res;
+        int res = 0;
+        for (int i = 0, j = 0, sum1 = nums[i]; i <= nums.length - 1;) {
+            if (sum1 >= target) {
+                res = res != 0 ? (j - i + 1 < res ? j - i + 1 : res) : j - i + 1;
+                i++;
+                j = i;
+                sum1 = 0;
+            } else if (sum1 < target) {
+                j++;
             }
+            if (i == nums.length || j == nums.length) {
+                break;
+            }
+            sum1 = sum1 + nums[j];
         }
 
         return res;
     }
 
     public static void main(String[] args) {
-        System.out.println(Solution.minSubArrayLen(15, new int[] { 5, 1, 3, 5, 10, 7, 4, 9, 2, 8 }));
+        System.out.println(Solution.minSubArrayLen(6, new int[] { 10, 2, 3 }));
     }
+
+    // Time Complexity -
+    // Best Case -> sum <= target -> O(1)
+    // Avg or Worst case -> contiguous sub-array within the array -> O(N)
+
+    // Space Complexity -
+    // O(1)
 }
