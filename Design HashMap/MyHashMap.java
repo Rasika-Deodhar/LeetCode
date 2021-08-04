@@ -5,16 +5,19 @@ import java.util.List;
 class MyHashMap {
 
     int[][] map;
-    int i;
+    public static int i = -1;
 
     /** Initialize your data structure here. */
     public MyHashMap() {
         map = new int[10000][2];
-        i = 0;
     }
 
     /** value will always be non-negative. */
     public void put(int key, int value) {
+
+        if (i > 10000) {
+            return;
+        }
 
         if (get(key) != -1) {
             for (int[] is : map) {
@@ -25,9 +28,13 @@ class MyHashMap {
             return;
         }
 
-        map[i][0] = key;
-        map[i][1] = value;
-        i++;
+        if (MyHashMap.i == -1) {
+            MyHashMap.i = 0;
+        }
+
+        map[MyHashMap.i][0] = key;
+        map[MyHashMap.i][1] = value;
+        MyHashMap.i++;
     }
 
     /**
@@ -40,7 +47,7 @@ class MyHashMap {
             if (is[0] == key) {
                 return is[1];
             }
-            if (j++ == i) {
+            if (j++ == MyHashMap.i) {
                 return -1;
             }
         }
@@ -54,6 +61,10 @@ class MyHashMap {
     public void remove(int key) {
         int j = 0;
 
+        if (get(key) == -1 || MyHashMap.i == -1) {
+            return;
+        }
+
         for (int[] is : map) {
             if (is[0] == key) {
                 break;
@@ -61,23 +72,15 @@ class MyHashMap {
             j++;
         }
 
-        for (; j <= i && j < map[0].length; j++) {
+        for (; j <= i && j < map.length - 1; j++) {
             map[j][0] = map[j + 1][0];
             map[j][1] = map[j + 1][1];
         }
+        MyHashMap.i--;
     }
 
     public static void main(String[] args) {
         MyHashMap mhm = new MyHashMap();
-        // mhm.put(1, 1);
-        // mhm.put(2, 2);
-        // System.out.println(mhm.get(1));
-        // System.out.println(mhm.get(3));
-        // mhm.put(2, 1);
-        // System.out.println(mhm.get(2));
-        // mhm.remove(2);
-        // System.out.println(mhm.get(2));
-
         List<String> ops = new ArrayList<>();
         ops.addAll(Arrays.asList("MyHashMap", "remove", "put", "remove", "remove", "get", "remove", "put", "get",
                 "remove", "put", "put", "put", "put", "put", "put", "put", "put", "put", "put", "put", "remove", "put",
@@ -122,8 +125,12 @@ class MyHashMap {
                     System.out.println(mhm.get(numList.get(k).get(0)));
                     break;
                 case "remove":
-                    mhm.remove(mhm.get(numList.get(k).get(0)));
+                    if (numList.size() > 0 && numList.get(k).size() > 0) {
+                        mhm.remove(numList.get(k).get(0));
+                    }
                     break;
+                default:
+                    continue;
             }
         }
     }
