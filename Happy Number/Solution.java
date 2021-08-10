@@ -22,6 +22,7 @@ class Solution {
         return sum;
     }
 
+    // https://www.geeksforgeeks.org/check-if-a-number-is-power-of-another-number/
     private boolean isPower(int x, int y) {
 
         if (x == 1)
