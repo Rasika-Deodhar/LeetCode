@@ -27,7 +27,7 @@ class Solution {
         if (x == 1)
             return (y == 1);
 
-        int pow = 1;
+        long pow = 1;
         while (pow < y) {
             pow *= x;
         }
@@ -38,4 +38,7 @@ class Solution {
         Solution s = new Solution();
         System.out.println(s.isHappy(1999999999));
     }
+
+    // Time Complexity = O(1)
+    // Space Complexity = O(1)
 }
