@@ -11,7 +11,7 @@ class Solution {
 
         // convert to List of List
         for (char[] charac : board) {
-            String s = charac.toString();
+            String s = String.valueOf(charac);
             list.add(s.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
         }
 
@@ -19,7 +19,7 @@ class Solution {
 
         // Check Valid Row
         for (List<Character> row : list) {
-            if (row.get(i).charValue() != '.' && !hashSet.add(row.get(i))) {
+            if (i < row.size() && row.get(i).charValue() != '.' && !hashSet.add(row.get(i))) {
                 return false;
             }
             i++;
@@ -30,7 +30,7 @@ class Solution {
         // Check Valid Column
         for (i = 0, j = 0; i < list.size() && j < list.get(i).size(); i++, j++) {
             hashSet.clear();
-            if (!hashSet.add(list.get(i).get(j))) {
+            if (list.get(i).get(j).charValue() != '.' && !hashSet.add(list.get(i).get(j))) {
                 return false;
             }
         }
