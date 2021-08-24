@@ -54,28 +54,23 @@ class Solution {
             subHashSets.add(new HashSet<>());
             subHashSets.add(new HashSet<>());
             subHashSets.add(new HashSet<>());
-            for (List<Character> list2 : subList) {
-                hashSet.clear();
-                if (list2.get(0) != '.' && !hashSet.add(list2.get(0))
-                        || list2.get(1) != '.' && !hashSet.add(list2.get(1))
-                        || list2.get(2) != '.' && !hashSet.add(list2.get(2))) {
+            for (List<Character> row : subList) {
+                if (row.get(0) != '.' && !subHashSets.get(0).add(row.get(0))
+                        || row.get(1) != '.' && !subHashSets.get(0).add(row.get(1))
+                        || row.get(2) != '.' && !subHashSets.get(0).add(row.get(2))) {
                     return false;
                 }
-                subHashSets.add(0, hashSet);
-                hashSet.clear();
-                if (list2.get(3) != '.' && !hashSet.add(list2.get(3))
-                        || list2.get(4) != '.' && !hashSet.add(list2.get(4))
-                        || list2.get(5) != '.' && !hashSet.add(list2.get(5))) {
+                if (row.get(3) != '.' && !subHashSets.get(1).add(row.get(3))
+                        || row.get(4) != '.' && !subHashSets.get(1).add(row.get(4))
+                        || row.get(5) != '.' && !subHashSets.get(1).add(row.get(5))) {
                     return false;
                 }
-                subHashSets.add(1, hashSet);
                 hashSet.clear();
-                if (list2.get(6) != '.' && !hashSet.add(list2.get(6))
-                        || list2.get(7) != '.' && !hashSet.add(list2.get(7))
-                        || list2.get(8) != '.' && !hashSet.add(list2.get(8))) {
+                if (row.get(6) != '.' && !subHashSets.get(2).add(row.get(6))
+                        || row.get(7) != '.' && !subHashSets.get(2).add(row.get(7))
+                        || row.get(8) != '.' && !subHashSets.get(2).add(row.get(8))) {
                     return false;
                 }
-                subHashSets.add(2, hashSet);
             }
             j = i;
             i += 3;
@@ -107,10 +102,13 @@ class Solution {
         // '.', '2', '8', '.' },
         // { '.', '.', '.', '4', '1', '9', '.', '.', '5' }, { '.', '.', '.', '.', '8',
         // '.', '.', '7', '9' } }));
-        System.out.println(s.isValidSudoku(new char[][] { { '7', '.', '.', '.', '4', '.', '.', '.', '.' },
-                { '.', '.', '.', '8', '6', '5', '.', '.', '.' }, { '.', '1', '.', '2', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '9', '.', '.', '.' }, { '.', '.', '.', '.', '5', '.', '5', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' }, { '.', '.', '.', '.', '.', '.', '2', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' }, { '.', '.', '.', '.', '.', '.', '.', '.', '.' } }));
+        System.out.println(s.isValidSudoku(new char[][] { { '.', '.', '.', '.', '5', '.', '.', '1', '.' },
+                { '.', '4', '.', '3', '.', '.', '.', '.', '.' }, { '.', '.', '.', '.', '.', '3', '.', '.', '1' },
+                { '8', '.', '.', '.', '.', '.', '.', '2', '.' }, { '.', '.', '2', '.', '7', '.', '.', '.', '.' },
+                { '.', '1', '5', '.', '.', '.', '.', '.', '.' }, { '.', '.', '.', '.', '.', '2', '.', '.', '.' },
+                { '.', '2', '.', '9', '.', '.', '.', '.', '.' }, { '.', '.', '4', '.', '.', '.', '.', '.', '.' } }));
     }
+
+    // Time Complexity = O(N^2)
+    // Space Complexity = O(N^2)
 }
