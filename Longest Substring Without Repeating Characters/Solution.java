@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 class Solution {
@@ -6,7 +7,7 @@ class Solution {
     // Solution not suitable for all test-cases
     public int lengthOfLongestSubstring(String s) {
 
-        // Not suitable for all codes
+        // Not suitable for all test cases
         // if (s.equals(" ") || s.length() == 1) {
         // return 1;
         // }
@@ -28,27 +29,38 @@ class Solution {
 
         // return result;
 
-        // Sliding Window Problem
+        // Sliding Window Problem Way -> refered
+        // https://www.youtube.com/watch?v=3IETreEybaA
         if (s.equals(" ") || s.length() == 1) {
             return 1;
         }
 
         int result = 0;
-        Map<String, Integer> m = new HashMap<>();
+        HashSet<Character> chars = new HashSet<>();
 
-        for (int i = 0, j = i + 1; i < s.length() && j < s.length();) {
-            if (!m.containsKey(s.substring(i, j)) && s.substring(i, j).contains(s.subSequence(i, i + 1))) {
-                // TODO
+        for (int i = 0, j = 0; j < s.length();) {
+            if (!chars.contains(s.charAt(j))) {
+                chars.add(s.charAt(j));
+                result = result < chars.size() ? chars.size() : result;
+                j++;
+            } else {
+                chars.remove(s.charAt(i));
+                i++;
             }
         }
+
+        return result;
+
+        // Time Complexity -> O(n)
+        // Space Complexity -> O(n)
 
     }
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        // System.out.println(s.lengthOfLongestSubstring("abcabcbb"));
-        // System.out.println(s.lengthOfLongestSubstring("bbbbb"));
-        // System.out.println(s.lengthOfLongestSubstring("pwwkew"));
+        System.out.println(s.lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(s.lengthOfLongestSubstring("bbbbb"));
+        System.out.println(s.lengthOfLongestSubstring("pwwkew"));
         System.out.println(s.lengthOfLongestSubstring("dvdf"));
     }
 }
