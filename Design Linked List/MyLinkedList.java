@@ -90,7 +90,7 @@ class MyLinkedList {
         if (index == 0) {
             head = head.nextNode;
             ;
-        } else if (index <= length) {
+        } else if (index < length) {
             int i = 0;
             MyLinkedList temp = head;
             MyLinkedList temp_prev = head;
@@ -103,48 +103,93 @@ class MyLinkedList {
                 }
                 i++;
             }
-            temp_prev = temp_prev.nextNode;
+            temp_prev.nextNode = temp.nextNode;
+            length--;
         }
     }
 
     public static void main(String[] args) {
-        String[] strArr = new String[] { "MyLinkedList", "addAtHead", "addAtTail", "addAtIndex", "get", "deleteAtIndex",
-                "get" };
-        List<Integer[]> arrayList = new ArrayList<>() {
+        MyLinkedList myLinkedList = new MyLinkedList();
+        String[] strArr = new String[] { "addAtHead", "deleteAtIndex", "addAtHead", "addAtHead", "addAtHead",
+                "addAtHead", "addAtHead", "addAtTail", "get", "deleteAtIndex", "deleteAtIndex" };
+
+        List<List<Integer>> arrayList = new ArrayList<>();
+        arrayList.add(new ArrayList<Integer>() {
             {
-                new ArrayList<Integer>() {
-                    {
-                        add(1);
-                    }
-                };
-                new ArrayList<Integer>() {
-                    {
-                        add(3);
-                    }
-                };
-                new ArrayList<Integer>() {
-                    {
-                        add(1);
-                        add(2);
-                    }
-                };
-                new ArrayList<Integer>() {
-                    {
-                        add(1);
-                    }
-                };
-                new ArrayList<Integer>() {
-                    {
-                        add(1);
-                    }
-                };
-                new ArrayList<Integer>() {
-                    {
-                        add(1);
-                    }
-                };
+                add(2);
             }
-        };
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(1);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(2);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(7);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(3);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(2);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(5);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(5);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(5);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(6);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(4);
+            }
+        });
+
+        int i = 0;
+        for (String str : strArr) {
+            switch (str) {
+                case "addAtHead":
+                    myLinkedList.addAtHead(arrayList.get(i++).get(0));
+                    break;
+                case "addAtTail":
+                    myLinkedList.addAtTail(arrayList.get(i++).get(0));
+                    break;
+                case "addAtIndex":
+                    myLinkedList.addAtIndex(arrayList.get(i).get(0), arrayList.get(i++).get(1));
+                    break;
+                case "get":
+                    System.out.println(myLinkedList.get(arrayList.get(i++).get(0)));
+                    break;
+                case "deleteAtIndex":
+                    myLinkedList.deleteAtIndex(arrayList.get(i++).get(0));
+                    break;
+            }
+        }
     }
 
 }
