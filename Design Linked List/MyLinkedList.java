@@ -82,76 +82,72 @@ class MyLinkedList {
             newObj.val = val;
             newObj.nextNode = temp;
             temp_prev.nextNode = newObj;
+
+            length++;
         }
-        length++;
     }
 
     public void deleteAtIndex(int index) {
         if (index == 0) {
             head = head.nextNode;
-            ;
         } else if (index < length) {
             int i = 0;
             MyLinkedList temp = head;
             MyLinkedList temp_prev = head;
-            while (i < index) {
-                if (i == 0) {
-                    temp = temp.nextNode;
-                } else {
-                    temp = temp.nextNode;
-                    temp_prev = temp_prev.nextNode;
-                }
-                i++;
+            while (i++ < index) {
+                temp_prev = temp;
+                temp = temp.nextNode;
             }
             temp_prev.nextNode = temp.nextNode;
-            length--;
         }
+        // else if (index == length) {
+        // MyLinkedList temp = head;
+        // MyLinkedList temp_prev = head;
+        // while (temp.nextNode != null) {
+        // temp_prev = temp;
+        // temp = temp.nextNode;
+        // }
+        // temp_prev.nextNode = null;
+        // }
+        length--;
     }
 
     public static void main(String[] args) {
         MyLinkedList myLinkedList = new MyLinkedList();
-        String[] strArr = new String[] { "addAtHead", "deleteAtIndex", "addAtHead", "addAtHead", "addAtHead",
-                "addAtHead", "addAtHead", "addAtTail", "get", "deleteAtIndex", "deleteAtIndex" };
+        String[] strArr = new String[] { "addAtHead", "addAtIndex", "addAtTail", "addAtHead", "addAtIndex", "addAtTail",
+                "addAtTail", "addAtIndex", "deleteAtIndex", "deleteAtIndex", "addAtTail" };
 
         List<List<Integer>> arrayList = new ArrayList<>();
         arrayList.add(new ArrayList<Integer>() {
             {
-                add(2);
+                add(0);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
             {
                 add(1);
+                add(4);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
             {
-                add(2);
+                add(8);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
             {
-                add(7);
+                add(5);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
             {
+                add(4);
                 add(3);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
             {
-                add(2);
-            }
-        });
-        arrayList.add(new ArrayList<Integer>() {
-            {
-                add(5);
-            }
-        });
-        arrayList.add(new ArrayList<Integer>() {
-            {
-                add(5);
+                add(0);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
@@ -162,6 +158,17 @@ class MyLinkedList {
         arrayList.add(new ArrayList<Integer>() {
             {
                 add(6);
+                add(3);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(7);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(5);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
