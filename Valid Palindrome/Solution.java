@@ -138,7 +138,7 @@ class Solution {
                 return true;
             }
 
-            // check if the cuurent 2 aplanumeric chars match each other, else return false
+            // check if the current 2 aplanumeric chars match each other, else return false
             if (s1[i] == s1[j]) {
                 i++;
                 j--;
@@ -150,6 +150,6 @@ class Solution {
 
     public static void main(String args[]) {
         Solution s = new Solution();
-        System.out.println(s.isPalindrome(".,"));
+        System.out.println(s.isPalindrome("ab"));
     }
 }
