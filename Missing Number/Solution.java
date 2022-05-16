@@ -16,4 +16,7 @@ class Solution {
         Solution s = new Solution();
         System.out.println(s.missingNumber(new int[] {0,1})); 
     }
+
+    // Time Complexity = O(N)
+    // Space Complexity = O(1)
 }
