@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 class Solution {
     public static int removeDuplicates(int[] nums) {
