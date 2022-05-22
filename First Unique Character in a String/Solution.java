@@ -1,4 +1,8 @@
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map.Entry;
 
 class Solution {
@@ -26,9 +30,28 @@ class Solution {
 
     }
 
+    // Bad Solution
+
+    // public int firstUniqChar(String s) {
+
+    //     HashSet<Character> hs = new LinkedHashSet<>();
+    //     List<Character> list = new ArrayList<>();
+
+    //     for (int i = 0; i < s.length(); i++) {
+    //         if(!list.contains(s.charAt(i))){
+    //             if(!hs.add(s.charAt(i))){
+    //                 list.add(s.charAt(i));
+    //                 hs.remove(s.charAt(i));
+    //             }
+    //         }
+    //     }
+
+    //     return hs.isEmpty() ? -1 : s.indexOf(hs.iterator().next()) ;
+    // }
+
     public static void main(String[] args) {
         Solution s = new Solution();
-        System.out.println(s.firstUniqChar("dddccdbba"));
+        System.out.println(s.firstUniqChar("aabb"));
     }
 
     // Time Complexity = O(N)
