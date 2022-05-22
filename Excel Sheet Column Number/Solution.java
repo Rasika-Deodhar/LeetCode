@@ -48,6 +48,8 @@ class Solution {
         // length_count += (int) Math.pow(26, i);
         // }
 
+        // The way we give base 10 in a decimal number, give base 26 here. 
+        // Eg - 26 = 6*(10^0) + 2*(10^1) ; AB = B*(26^0) + A*(26^1)
         int power = 0;
         for (int i = s.length() - 1; i >= 0; i--) {
             length_count += (map.get(s.substring(i, i + 1))) * (int) Math.pow(26, power);
