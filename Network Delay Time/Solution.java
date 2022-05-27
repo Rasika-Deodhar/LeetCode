@@ -58,14 +58,29 @@ class Solution {
 
             dist = smallestDistance;
 
-            for (int i = 0; i < n; i++) {
-                if(times[i][0] == smallestDistanceNode && unVisited.contains(times[i][1])){
+            for (int i = 0; i < times.length; i++) {
+                if(smallestDistance==Integer.MAX_VALUE) {
+                    break;
+                }
+                if(times[i][0] == smallestDistanceNode  && unVisited.contains(times[i][1])){
                     if(allDistances[times[i][1]-1][1] > (dist + times[i][2])){
                         allDistances[times[i][1]-1][1] = dist + times[i][2];
                         allDistances[times[i][1]-1][2] = smallestDistanceNode;
                         smallestDistance = dist + times[i][2];
                     }
-                }
+                } 
+                // Graph is not bi-directional
+                // if(times[i][1] == smallestDistanceNode && unVisited.contains(times[i][1])){
+                //     if(allDistances[times[i][0]-1][1] > (dist + times[i][2])){
+                //         allDistances[times[i][0]-1][1] = dist + times[i][2];
+                //         allDistances[times[i][0]-1][2] = smallestDistanceNode;
+                //         smallestDistance = dist + times[i][2];
+                //     }
+                // }
+            }
+
+            if(smallestDistance==Integer.MAX_VALUE) {
+                break;
             }
 
             unVisited.remove(smallestDistanceNode);
