@@ -20,9 +20,9 @@ class MyLinkedList {
     public int get(int index) {
         if (index == 0) {
             return head != null ? head.val : -1;
-        } else if (index == length) {
-            return head != null ? tail.val : -1;
-        } else if (index > length) {
+        } else if (index == length-1) {
+            return tail != null ? tail.val : -1;
+        } else if (index > length-1) {
             return -1;
         }
         int i = 0;
@@ -65,6 +65,17 @@ class MyLinkedList {
             addAtHead(val);
         } else if (index == length) {
             addAtTail(val);
+        } else if (index == length-1) {
+            MyLinkedList temp = head;
+            while (temp.nextNode!=tail) {
+                temp = temp.nextNode;
+            }
+            MyLinkedList newObj = new MyLinkedList();
+            newObj.val = val;
+            temp.nextNode = newObj;
+            newObj.nextNode = tail;
+
+            length++;
         } else if (index < length) {
             int i = 0;
             MyLinkedList temp = head;
@@ -88,17 +99,30 @@ class MyLinkedList {
     }
 
     public void deleteAtIndex(int index) {
+        if(index > length-1) {
+            return;
+        }
         if (index == 0) {
             head = head.nextNode;
-        } else if (index < length) {
-            int i = 0;
+            length--;
+        } else if(index == length-1) {
             MyLinkedList temp = head;
             MyLinkedList temp_prev = head;
-            while (i++ < index) {
+            while(temp!=tail) {
                 temp_prev = temp;
                 temp = temp.nextNode;
             }
-            temp_prev.nextNode = temp.nextNode;
+            temp_prev.nextNode = null;
+            length--;
+            return;
+        } else {
+            int i = 0;
+            MyLinkedList temp = head;
+            while (i++ < index-1) {
+                temp = temp.nextNode;
+            }
+            temp.nextNode = temp.nextNode.nextNode;
+            length--;
         }
         // else if (index == length) {
         // MyLinkedList temp = head;
@@ -109,45 +133,45 @@ class MyLinkedList {
         // }
         // temp_prev.nextNode = null;
         // }
-        length--;
+    }
+
+    public void showLinkedList() {
+        MyLinkedList temp = head;
+        System.out.println("");
+        System.out.println("Linked list status : ------------------- ");
+        System.out.println("");
+        while(temp!=null) {
+            System.out.print(temp.val + " -> ");
+            temp = temp.nextNode;
+        }
+        System.out.println("");
+        System.out.println("--------------------------");
     }
 
     public static void main(String[] args) {
-        MyLinkedList myLinkedList = new MyLinkedList();
-        String[] strArr = new String[] { "addAtHead", "addAtIndex", "addAtTail", "addAtHead", "addAtIndex", "addAtTail",
-                "addAtTail", "addAtIndex", "deleteAtIndex", "deleteAtIndex", "addAtTail" };
+        MyLinkedList myLinkedList = null;
+        // String[] strArr = new String[] { "MyLinkedList","addAtHead", "addAtIndex", "addAtTail", "addAtHead", "addAtIndex", "addAtTail",
+        //         "addAtTail", "addAtIndex", "deleteAtIndex", "deleteAtIndex", "addAtTail" };
+        String[] strArr = new String[] { "MyLinkedList","addAtHead","get","addAtHead","addAtHead",
+                                        "deleteAtIndex","addAtHead","get","get","get","addAtHead", "addAtIndex","deleteAtIndex" };
 
         List<List<Integer>> arrayList = new ArrayList<>();
         arrayList.add(new ArrayList<Integer>() {
+            {}
+        });
+        arrayList.add(new ArrayList<Integer>() {
             {
-                add(0);
+                add(4);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
             {
                 add(1);
-                add(4);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
             {
-                add(8);
-            }
-        });
-        arrayList.add(new ArrayList<Integer>() {
-            {
-                add(5);
-            }
-        });
-        arrayList.add(new ArrayList<Integer>() {
-            {
-                add(4);
-                add(3);
-            }
-        });
-        arrayList.add(new ArrayList<Integer>() {
-            {
-                add(0);
+                add(1);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
@@ -157,7 +181,6 @@ class MyLinkedList {
         });
         arrayList.add(new ArrayList<Integer>() {
             {
-                add(6);
                 add(3);
             }
         });
@@ -168,32 +191,66 @@ class MyLinkedList {
         });
         arrayList.add(new ArrayList<Integer>() {
             {
-                add(5);
+                add(3);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(3);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(3);
+            }
+        });
+        arrayList.add(new ArrayList<Integer>() {
+            {
+                add(1);
             }
         });
         arrayList.add(new ArrayList<Integer>() {
             {
                 add(4);
+                add(41);
+            }
+        });arrayList.add(new ArrayList<Integer>() {
+            {
+                add(4);
             }
         });
 
-        int i = 0;
+        int i = 1;
         for (String str : strArr) {
             switch (str) {
                 case "addAtHead":
+                    System.out.println("addAtHead");
                     myLinkedList.addAtHead(arrayList.get(i++).get(0));
+                    myLinkedList.showLinkedList();
                     break;
                 case "addAtTail":
+                    System.out.println("addAtTail");
                     myLinkedList.addAtTail(arrayList.get(i++).get(0));
+                    myLinkedList.showLinkedList();
                     break;
                 case "addAtIndex":
+                    System.out.println("addAtIndex at " + arrayList.get(i).get(1));
                     myLinkedList.addAtIndex(arrayList.get(i).get(0), arrayList.get(i++).get(1));
+                    myLinkedList.showLinkedList();
                     break;
                 case "get":
+                    System.out.println("get at " + arrayList.get(i).get(0));
                     System.out.println(myLinkedList.get(arrayList.get(i++).get(0)));
+                    myLinkedList.showLinkedList();
                     break;
                 case "deleteAtIndex":
+                    System.out.println("deleteAtIndex at " + arrayList.get(i).get(0));
                     myLinkedList.deleteAtIndex(arrayList.get(i++).get(0));
+                    myLinkedList.showLinkedList();
+                    break;
+                case "MyLinkedList":
+                    myLinkedList = new MyLinkedList();
+                    myLinkedList.showLinkedList();
                     break;
             }
         }
