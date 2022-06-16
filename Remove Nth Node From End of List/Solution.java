@@ -19,16 +19,21 @@ class Solution {
             temp = temp.next;
         }
 
-        if(length-n == 0) { 
+        if(length-n < 0) { 
             return null;
+        }
+        if( length-n == 0) {
+            if(length==1) return null;
+            return head.next;
         }
 
         temp = head;
         int i=0;
-        while(i++ < length - n - 1) {
+        while(i < length - n - 1  && temp.next!=null) {
             temp = temp.next;
+            i++;
         }
-        temp.next = temp.next.next;
+        temp.next = temp.next==null? null : temp.next.next;
 
         return head;
     }
