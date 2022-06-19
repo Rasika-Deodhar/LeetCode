@@ -30,4 +30,7 @@ class Solution {
         }
         return new_head;
     }
+
+    // Time Complexity = O(N)
+    // Space Complexity = O(1)
 }

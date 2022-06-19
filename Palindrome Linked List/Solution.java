@@ -69,6 +69,9 @@ class Solution {
         return new_head;
     }
 
+    // Time Complexity = O(N)
+    // Space Complexity = O(N/2)
+
     public static void main(String[] args) {
 
         ListNode listNode4 = new ListNode(1, null);

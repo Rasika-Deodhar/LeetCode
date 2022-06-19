@@ -23,18 +23,20 @@ class Solution {
         }
         tail_new = tail_original;
 
+        // till you reach original tail
         while(temp!=tail_original && temp.next!=tail_original) {
 
+            // Move even node to end, by changing pointers
             ListNode even_node = temp.next;
-            temp.next = temp.next.next;
+            temp.next = temp.next.next; // odd element points to next odd element
             even_node.next = null;
-            tail_new.next = even_node;
-            tail_new = tail_new.next;
+            tail_new.next = even_node; // adding even to end
+            tail_new = tail_new.next; // saving new tail
 
             temp = temp.next;
         }
 
-        if(temp.next == tail_original) {
+        if(temp.next == tail_original) { // moving element just before original tail to the end -> in case of even no. of elements in list
             ListNode even_node = temp.next;
             temp.next = temp.next.next;
             even_node.next = null;
@@ -44,6 +46,9 @@ class Solution {
         return head;
 
     }
+
+    // Time Complexity = O(N)
+    // Space Complexity = O(1)
 
     public static void main(String[] args) {
         ListNode listNode5 = new ListNode(5, null);
