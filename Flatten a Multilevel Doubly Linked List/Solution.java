@@ -9,11 +9,11 @@ class Node {
 */
 
 class Solution {
-    static Node flatten ;
+    Node flatten;
     static Node temp;
-    static Node t1;
     public Node flatten(Node head) {
-        while(head!=null) {
+        if(head==null) {return head;}
+       while(head!=null) {
             if(flatten == null) {
                 flatten = new Node();
                 flatten.val = head.val;
@@ -28,10 +28,9 @@ class Solution {
                 temp = temp.next;
             }
             if(head.child!=null) {
-                t1 = head;
-                return flatten(head.child);
+                flatten(head.child);
             }
-            if(t1!=null) {head = t1;}
+            
             head = head.next;
         }
 
