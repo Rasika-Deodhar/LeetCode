@@ -9,12 +9,14 @@ class Solution {
         }
 
         List<Integer> result = new ArrayList<>();
-        int[] counter = new int[nums.length];
+        int[] counter = new int[nums.length]; // counter array to count 1-n indexes
 
+        // index is counted as n-1 -> add 1 to the indices which are contained in nums array
         for (int i = 0; i < nums.length; i++) {
             counter[nums[i] - 1]++;
         }
 
+        // those who are not in the array will remain 0, and can be returned in result set
         for (int i = 0; i < counter.length; i++) {
             if (counter[i] == 0) {
                 result.add(i + 1);
